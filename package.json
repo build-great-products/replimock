@@ -1,0 +1,31 @@
+{
+  "name": "@roughapp/replimock",
+  "version": "15.0.0",
+  "description": "Mock Replicache client for testing",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "vitest",
+    "build": "tsup --clean --entry.0 ./src/index.ts --format esm --dts --minify",
+    "tidy": "biome check --write"
+  },
+  "keywords": ["Replicache", "Mock", "Testing"],
+  "author": {
+    "name": "George Czabania"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "replicache": "^15.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@tsconfig/node22": "22.0.0",
+    "tsup": "8.2.4",
+    "typescript": "5.5.4",
+    "vitest": "2.0.5"
+  },
+  "dependencies": {
+    "tinybase": "5.1.5"
+  }
+}
