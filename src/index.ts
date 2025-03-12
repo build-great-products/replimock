@@ -2,6 +2,7 @@ import type { MutatorDefs, ReadonlyJSONValue, Replicache } from 'replicache'
 import { createStore } from 'tinybase'
 
 import { createExperimentalWatch } from './experimental-watch.js'
+import { generateUUID } from './generate-uuid.js'
 import { jsonstring } from './jsonstring.js'
 import { createMutate } from './mutate.js'
 import { createQuery } from './query.js'
@@ -29,15 +30,17 @@ const mockReplicache = <MD extends MutatorDefs>(
     )
   }
 
+  const id = generateUUID()
+
   const rep: Omit<Replicache, '#private'> = {
     experimentalWatch: createExperimentalWatch(store),
     mutate: createMutate(store, mutators),
     query: createQuery(store),
 
     // replicache internals
-    name: 'mock-replicache',
-    idbName: 'mock-replicache',
-    schemaVersion: 'mock-replicache',
+    name: `replimock-${id}`,
+    idbName: `replimock-${id}`,
+    schemaVersion: '0',
     auth: '?',
     pullURL: '/',
     pushURL: '/',
@@ -56,9 +59,9 @@ const mockReplicache = <MD extends MutatorDefs>(
     onUpdateNeeded: () => null,
     onOnlineChange: () => null,
     getAuth: () => null,
-    clientID: 'mock-replicache',
-    clientGroupID: Promise.resolve('mock-replicache'),
-    profileID: Promise.resolve('mock-replicache'),
+    clientID: `client-${id}`,
+    clientGroupID: Promise.resolve(`client-group-${id}`),
+    profileID: Promise.resolve(`profile-${id}`),
     pull: async () => undefined,
     push: async () => undefined,
     poke: async () => undefined,

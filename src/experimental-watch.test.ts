@@ -133,9 +133,7 @@ describe('experimentalWatch(callback, {prefix})', () => {
     unsubscribe()
   })
 
-  test('should not callback with diff for non-matching prefix', ({
-    store,
-  }) => {
+  test('should not callback with diff for non-matching prefix', ({ store }) => {
     const experimentalWatch = createExperimentalWatch(store)
 
     const callback = vi.fn()
@@ -195,9 +193,7 @@ describe('experimentalWatch(callback, {initialValuesInFirstDiff})', () => {
     unsubscribe()
   })
 
-  test('should callback with initial values in first diff', ({
-    store,
-  }) => {
+  test('should callback with initial values in first diff', ({ store }) => {
     store.setValues({
       'row/1': '{"id":1}',
       'row/2': '{"id":2}',
@@ -262,9 +258,7 @@ describe('experimentalWatch(callback, {initialValuesInFirstDiff})', () => {
 })
 
 describe('experimentalWatch(callback, {prefix, initialValuesInFirstDiff})', () => {
-  test('should not callback if no matching initial values', ({
-    store,
-  }) => {
+  test('should not callback if no matching initial values', ({ store }) => {
     store.setValues({
       'col/1': '{"id":1}',
     })
