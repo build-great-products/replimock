@@ -1,6 +1,6 @@
 {
   "name": "@roughapp/replimock",
-  "version": "15.0.2",
+  "version": "15.0.3",
   "description": "Mock Replicache client for testing",
   "type": "module",
   "main": "./dist/index.js",
@@ -12,7 +12,11 @@
     "tidy": "biome check --write",
     "prepublish": "$npm_execpath run build"
   },
-  "keywords": ["Replicache", "Mock", "Testing"],
+  "keywords": [
+    "Replicache",
+    "Mock",
+    "Testing"
+  ],
   "author": {
     "name": "George Czabania"
   },
