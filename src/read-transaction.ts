@@ -6,7 +6,7 @@ import { jsonstring } from './jsonstring.js'
 const createReadTransaction = (store: Store): ReadTransaction => {
   const tx: ReadTransaction = {
     scan: () => {
-      throw new Error('Not implemented')
+      throw new Error('replicache.scan is not implemented')
     },
     get: async (key: string): Promise<ReadonlyJSONValue | undefined> => {
       const value = store.getValue(key)

@@ -19,13 +19,13 @@
     "replicache": "^15.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
+    "@biomejs/biome": "1.9.4",
     "@tsconfig/node22": "22.0.0",
-    "tsup": "8.2.4",
-    "typescript": "5.5.4",
-    "vitest": "2.0.5"
+    "tsup": "8.4.0",
+    "typescript": "5.8.2",
+    "vitest": "3.0.8"
   },
   "dependencies": {
-    "tinybase": "5.1.5"
+    "tinybase": "5.4.8"
   }
 }

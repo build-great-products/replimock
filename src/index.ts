@@ -46,10 +46,10 @@ const mockReplicache = <MD extends MutatorDefs>(
     pullInterval: 60_000,
     pushDelay: 1_000,
     puller: async () => {
-      throw Error('Not implemented')
+      throw Error('replicache.puller is not implemented')
     },
     pusher: async () => {
-      throw Error('Not implemented')
+      throw Error('repliache.pusher is not implemented')
     },
     onSync: () => null,
     onClientStateNotFound: () => null,
