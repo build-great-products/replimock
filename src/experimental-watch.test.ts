@@ -11,7 +11,7 @@ const test = anyTest.extend<{ store: Store }>({
 })
 
 describe('experimentalWatch(callback)', () => {
-  test('should callback with diff', async ({ store }) => {
+  test('should callback with diff', ({ store }) => {
     const experimentalWatch = createExperimentalWatch(store)
 
     const callback = vi.fn()
@@ -24,29 +24,40 @@ describe('experimentalWatch(callback)', () => {
     })
 
     // Wait for the next tick to allow the callback to be called
-    await setTimeout(0)
-    expect(callback).toHaveBeenCalledWith([
-      {
-        key: 'row/1',
-        op: 'add',
-        newValue: { id: 1 },
-      },
-      {
-        key: 'row/2',
-        op: 'add',
-        newValue: { id: 2 },
-      },
-      {
-        key: 'row/3',
-        op: 'add',
-        newValue: { id: 3 },
-      },
+    expect(callback.mock.calls).toStrictEqual([
+      [
+        [
+          {
+            key: 'row/1',
+            op: 'add',
+            newValue: { id: 1 },
+          },
+        ],
+      ],
+      [
+        [
+          {
+            key: 'row/2',
+            op: 'add',
+            newValue: { id: 2 },
+          },
+        ],
+      ],
+      [
+        [
+          {
+            key: 'row/3',
+            op: 'add',
+            newValue: { id: 3 },
+          },
+        ],
+      ],
     ])
 
     unsubscribe()
   })
 
-  test('should not callback after unsubscribe', async ({ store }) => {
+  test('should not callback after unsubscribe', ({ store }) => {
     const experimentalWatch = createExperimentalWatch(store)
 
     const callback = vi.fn()
@@ -55,11 +66,10 @@ describe('experimentalWatch(callback)', () => {
 
     store.setValue('row/1', '{"id":1}')
 
-    await setTimeout(0)
     expect(callback).toHaveBeenCalledTimes(0)
   })
 
-  test('should ignore empty diff', async ({ store }) => {
+  test('should ignore empty diff', ({ store }) => {
     // pre-set value
     store.setValues({ 'row/1': '{"id":1}' })
 
@@ -71,7 +81,6 @@ describe('experimentalWatch(callback)', () => {
     // setting the same value should not trigger a callback
     store.setValue('row/1', '{"id":1}')
 
-    await setTimeout(0)
     expect(callback).toHaveBeenCalledTimes(0)
 
     unsubscribe()
@@ -79,7 +88,7 @@ describe('experimentalWatch(callback)', () => {
 })
 
 describe('experimentalWatch(callback, {prefix})', () => {
-  test('should callback with diff for matching prefix', async ({ store }) => {
+  test('should callback with diff for matching prefix', ({ store }) => {
     const experimentalWatch = createExperimentalWatch(store)
 
     const callback = vi.fn()
@@ -91,29 +100,40 @@ describe('experimentalWatch(callback, {prefix})', () => {
       'row/3': '{"id":3}',
     })
 
-    await setTimeout(0)
-    expect(callback).toHaveBeenCalledWith([
-      {
-        key: 'row/1',
-        op: 'add',
-        newValue: { id: 1 },
-      },
-      {
-        key: 'row/2',
-        op: 'add',
-        newValue: { id: 2 },
-      },
-      {
-        key: 'row/3',
-        op: 'add',
-        newValue: { id: 3 },
-      },
+    expect(callback.mock.calls).toStrictEqual([
+      [
+        [
+          {
+            key: 'row/1',
+            op: 'add',
+            newValue: { id: 1 },
+          },
+        ],
+      ],
+      [
+        [
+          {
+            key: 'row/2',
+            op: 'add',
+            newValue: { id: 2 },
+          },
+        ],
+      ],
+      [
+        [
+          {
+            key: 'row/3',
+            op: 'add',
+            newValue: { id: 3 },
+          },
+        ],
+      ],
     ])
 
     unsubscribe()
   })
 
-  test('should not callback with diff for non-matching prefix', async ({
+  test('should not callback with diff for non-matching prefix', ({
     store,
   }) => {
     const experimentalWatch = createExperimentalWatch(store)
@@ -123,13 +143,12 @@ describe('experimentalWatch(callback, {prefix})', () => {
 
     store.setValue('col/1', '{"id":1}')
 
-    await setTimeout(0)
     expect(callback).toHaveBeenCalledTimes(0)
 
     unsubscribe()
   })
 
-  test('should handle multiple watchers', async ({ store }) => {
+  test('should handle multiple watchers', ({ store }) => {
     const experimentalWatch = createExperimentalWatch(store)
 
     const callback1 = vi.fn()
@@ -142,7 +161,6 @@ describe('experimentalWatch(callback, {prefix})', () => {
       'col/1': '{"id":1}',
     })
 
-    await setTimeout(0)
     expect(callback1).toHaveBeenCalledWith([
       {
         key: 'row/1',
@@ -164,7 +182,7 @@ describe('experimentalWatch(callback, {prefix})', () => {
 })
 
 describe('experimentalWatch(callback, {initialValuesInFirstDiff})', () => {
-  test('should not callback if no initial values', async ({ store }) => {
+  test('should not callback if no initial values', ({ store }) => {
     const experimentalWatch = createExperimentalWatch(store)
 
     const callback = vi.fn()
@@ -172,13 +190,12 @@ describe('experimentalWatch(callback, {initialValuesInFirstDiff})', () => {
       initialValuesInFirstDiff: true,
     })
 
-    await setTimeout(0)
     expect(callback).toHaveBeenCalledTimes(0)
 
     unsubscribe()
   })
 
-  test('should callback with initial values in first diff', async ({
+  test('should callback with initial values in first diff', ({
     store,
   }) => {
     store.setValues({
@@ -194,7 +211,6 @@ describe('experimentalWatch(callback, {initialValuesInFirstDiff})', () => {
       initialValuesInFirstDiff: true,
     })
 
-    await setTimeout(0)
     expect(callback).toHaveBeenCalledWith([
       {
         key: 'row/1',
@@ -216,7 +232,7 @@ describe('experimentalWatch(callback, {initialValuesInFirstDiff})', () => {
     unsubscribe()
   })
 
-  test('should not callback with initial values in subsequent diffs', async ({
+  test('should not callback with initial values in subsequent diffs', ({
     store,
   }) => {
     store.setValue('row/1', '{"id":1}')
@@ -246,7 +262,7 @@ describe('experimentalWatch(callback, {initialValuesInFirstDiff})', () => {
 })
 
 describe('experimentalWatch(callback, {prefix, initialValuesInFirstDiff})', () => {
-  test('should not callback if no matching initial values', async ({
+  test('should not callback if no matching initial values', ({
     store,
   }) => {
     store.setValues({
@@ -261,13 +277,12 @@ describe('experimentalWatch(callback, {prefix, initialValuesInFirstDiff})', () =
       initialValuesInFirstDiff: true,
     })
 
-    await setTimeout(0)
     expect(callback).toHaveBeenCalledTimes(0)
 
     unsubscribe()
   })
 
-  test('should callback with initial values in first diff for matching prefix', async ({
+  test('should callback with initial values in first diff for matching prefix', ({
     store,
   }) => {
     store.setValues({
@@ -285,7 +300,6 @@ describe('experimentalWatch(callback, {prefix, initialValuesInFirstDiff})', () =
       initialValuesInFirstDiff: true,
     })
 
-    await setTimeout(0)
     expect(callback).toHaveBeenCalledWith([
       {
         key: 'row/1',

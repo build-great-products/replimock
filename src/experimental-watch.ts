@@ -112,18 +112,18 @@ const createExperimentalWatch = (store: Store): ExperimentalWatch => {
 
   const batchHandle = (() => {
     let diffList: Diff<string>[] = []
-    let timer: NodeJS.Timeout | undefined = undefined
+    // let timer: NodeJS.Timeout | undefined = undefined
 
     return (diff: Diff<string>) => {
       diffList.push(diff)
-      if (timer === undefined) {
-        timer = setTimeout(() => {
-          const thisDiffList = diffList
-          diffList = []
-          timer = undefined
-          handleDiffList(thisDiffList)
-        }, 0)
-      }
+      // if (timer === undefined) {
+      //   timer = setTimeout(() => {
+      const thisDiffList = diffList
+      diffList = []
+      // timer = undefined
+      handleDiffList(thisDiffList)
+      // }, 0)
+      // }
     }
   })()
 
