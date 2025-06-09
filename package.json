@@ -1,6 +1,6 @@
 {
   "name": "@roughapp/replimock",
-  "version": "15.0.5",
+  "version": "15.1.0",
   "description": "Mock Replicache client for testing",
   "packageManager": "pnpm@10.5.2",
   "engines": {
