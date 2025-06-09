@@ -26,12 +26,12 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@tsconfig/node22": "22.0.0",
-    "tsup": "8.4.0",
-    "typescript": "5.8.2",
-    "vitest": "3.0.8"
+    "@tsconfig/node22": "22.0.2",
+    "tsup": "8.5.0",
+    "typescript": "5.8.3",
+    "vitest": "3.2.2"
   },
   "dependencies": {
-    "tinybase": "5.4.8"
+    "tinybase": "6.2.1"
   }
 }
