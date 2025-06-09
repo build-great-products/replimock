@@ -17,11 +17,7 @@
     "prepublish": "$npm_execpath run build",
     "knip": "knip"
   },
-  "keywords": [
-    "Replicache",
-    "Mock",
-    "Testing"
-  ],
+  "keywords": ["Replicache", "Mock", "Testing"],
   "author": {
     "name": "George Czabania"
   },
