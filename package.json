@@ -2,6 +2,10 @@
   "name": "@roughapp/replimock",
   "version": "15.0.5",
   "description": "Mock Replicache client for testing",
+  "packageManager": "pnpm@10.5.2",
+  "engines": {
+    "node": ">=22.9.0"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,13 +14,10 @@
     "check": "tsc --noEmit",
     "build": "tsup --clean --entry.0 ./src/index.ts --format esm --dts --minify",
     "tidy": "biome check --write",
-    "prepublish": "$npm_execpath run build"
+    "prepublish": "$npm_execpath run build",
+    "knip": "knip"
   },
-  "keywords": [
-    "Replicache",
-    "Mock",
-    "Testing"
-  ],
+  "keywords": ["Replicache", "Mock", "Testing"],
   "author": {
     "name": "George Czabania"
   },
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@tsconfig/node22": "22.0.2",
+    "knip": "5.60.2",
     "tsup": "8.5.0",
     "typescript": "5.8.3",
     "vitest": "3.2.2"
