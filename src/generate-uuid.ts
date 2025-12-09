@@ -5,7 +5,7 @@ const generateUUID = (): string => {
   }
 
   // Fallback: use Math.random (less robust, but works in all environments)
-  let d = new Date().getTime()
+  let d = Date.now()
   if (
     typeof performance !== 'undefined' &&
     typeof performance.now === 'function'

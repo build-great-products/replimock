@@ -1,5 +1,5 @@
-import { createStore } from 'tinybase'
 import type { Store } from 'tinybase'
+import { createStore } from 'tinybase'
 import { test as anyTest, describe, expect } from 'vitest'
 
 import { createQuery } from './query.js'
