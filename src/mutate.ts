@@ -11,7 +11,7 @@ type MaybePromise<T> = T | Promise<T>
 type ToPromise<P> = P extends Promise<unknown> ? P : Promise<P>
 
 type MutatorReturn<T extends ReadonlyJSONValue = ReadonlyJSONValue> =
-  // biome-ignore lint/suspicious/noConfusingVoidType:
+  // biome-ignore lint/suspicious/noConfusingVoidType: this is fine
   MaybePromise<T | void>
 
 type MakeMutator<

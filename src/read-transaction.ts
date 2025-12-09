@@ -1,8 +1,7 @@
 import type {
   AsyncIterableIteratorToArray,
-  IndexKey,
-  ReadTransaction,
   ReadonlyJSONValue,
+  ReadTransaction,
   ScanOptions,
   ScanResult,
 } from 'replicache'
@@ -88,16 +87,16 @@ const createReadTransaction = (store: Store): ReadTransaction => {
       // Create and return the scan result with properly typed methods
       const scanResult = {
         [Symbol.asyncIterator]: () =>
-          createAsyncIterable<ReadonlyJSONValue>((key, value) =>
+          createAsyncIterable<ReadonlyJSONValue>((_key, value) =>
             jsonstring.decode(value),
           ),
         toArray: () =>
-          createAsyncIterable<ReadonlyJSONValue>((key, value) =>
+          createAsyncIterable<ReadonlyJSONValue>((_key, value) =>
             jsonstring.decode(value),
           ).toArray(),
 
         values: () =>
-          createAsyncIterable<ReadonlyJSONValue>((key, value) =>
+          createAsyncIterable<ReadonlyJSONValue>((_key, value) =>
             jsonstring.decode(value),
           ),
         entries: () =>
@@ -105,7 +104,7 @@ const createReadTransaction = (store: Store): ReadTransaction => {
             key,
             jsonstring.decode(value),
           ]),
-        keys: () => createAsyncIterable<string>((key, value) => key),
+        keys: () => createAsyncIterable<string>((key, _value) => key),
       } as ScanResult<string, ReadonlyJSONValue>
 
       return scanResult

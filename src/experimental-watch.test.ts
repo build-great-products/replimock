@@ -1,6 +1,5 @@
-import { setTimeout } from 'node:timers/promises'
-import { createStore } from 'tinybase'
 import type { Store } from 'tinybase'
+import { createStore } from 'tinybase'
 import { test as anyTest, describe, expect, vi } from 'vitest'
 
 import { createExperimentalWatch } from './experimental-watch.js'
