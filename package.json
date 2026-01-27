@@ -30,15 +30,15 @@
     "replicache": "^15.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.8",
+    "@biomejs/biome": "2.3.13",
     "@tsconfig/node22": "22.0.5",
-    "@types/node": "24.10.2",
-    "knip": "5.72.0",
+    "@types/node": "25.0.10",
+    "knip": "5.82.1",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vitest": "4.0.15"
+    "vitest": "4.0.18"
   },
   "dependencies": {
-    "tinybase": "7.0.1"
+    "tinybase": "7.3.2"
   }
 }
